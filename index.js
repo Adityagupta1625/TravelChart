@@ -108,13 +108,15 @@ function recur(intial, matrix,optSeq) {
 
       if (new_intial.total < optimal.total) {
         optSeq=[];
-        
+
         for(let i=0;i<matrix.length;i++) optSeq.push(i+1);
 
         optSeq[i]=j+1;
         optSeq[j]=i+1;
-
+        
+      
         optimal.total = new_intial.total;
+        optimal.optSeq=optSeq;
       }
       swapRows(matrix, i, j);
       swapColumns(matrix, i, j);
@@ -127,10 +129,10 @@ function recur(intial, matrix,optSeq) {
 function solve(matrix,optSeq) {
   let intial = computeDistance(matrix,optSeq);
 
-  if (intial.stop) return { ans: intial.total, intial: intial.total };
+  if (intial.stop) return { ans: intial.total, intial: intial.total,seq:optSeq };
 
   optimal = recur(intial, matrix,optSeq);
-  return { ans: optimal.total, intial: intial.total };
+  return { ans: optimal.total, intial: intial.total,seq:optimal.optSeq };
 }
 
 function getSolution() {
