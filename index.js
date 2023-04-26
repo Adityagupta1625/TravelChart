@@ -107,6 +107,10 @@ function recur(intial, matrix,optSeq) {
       if (new_intial.stop) return new_intial.total;
 
       if (new_intial.total < optimal.total) {
+        optSeq=[];
+        
+        for(let i=0;i<matrix.length;i++) optSeq.push(i+1);
+
         optSeq[i]=j+1;
         optSeq[j]=i+1;
 
